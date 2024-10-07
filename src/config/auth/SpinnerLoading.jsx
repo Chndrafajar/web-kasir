@@ -21,7 +21,7 @@ export const SpinnerLoading = ({ path = "/" }) => {
   return (
     <div className="d-flex align-items-center justify-content-center flex-column" style={{ height: "100vh" }}>
       {/* <h1 className="text-center">redirecting to you in {count} second </h1> */}
-      <Spinner />
+      <Spinner variant="primary" />
     </div>
   );
 };

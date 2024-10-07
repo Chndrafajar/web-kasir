@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from "react";
-import CardInformationDashboard from "../../../features/Dashboard/CardInformationDashboard";
-import { Col, Offcanvas, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import CardCategory from "../../../features/Dashboard/Menu/CardCategory";
 import CardMenu from "../../../features/Dashboard/Menu/CardMenu";
-import { FaPlus } from "react-icons/fa6";
-import styled from "styled-components";
 import axiosInstance from "../../../config/axios/axiosInstance";
 import { useQuery } from "react-query";
 import CartMenuOrder from "../../../features/Dashboard/Menu/CartMenuOrder";
 import { toast } from "react-toastify";
 
 export default function MenuPage() {
-  const [selectedCategory, setSelectedCategory] = useState("66fcf2b08e902664d612a547");
-
   //cart
   const [cart, setCart] = useState(() => {
     // Inisialisasi state dengan data dari localStorage jika ada
@@ -82,6 +77,8 @@ export default function MenuPage() {
       enabled: !!categoriesData?.category, // Hanya jalankan query ini jika categories sudah ada
     }
   );
+
+  const [selectedCategory, setSelectedCategory] = useState(categoriesData?.category[0]._id);
 
   //get menu
   const fetchMenu = async (categoryId, page = 1) => {
