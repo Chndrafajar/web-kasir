@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { PDFViewer } from "@react-pdf/renderer";
 import axiosInstance from "../../../config/axios/axiosInstance";
-import TransactionPDF from "../../../components/PDF/TransactionPDF";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import dateFormat from "../../../config/dateFormat";
 import { DFlex, DFlexJustifyBetween } from "../../../styled/styled.flex";
 import formatRupiah from "../../../config/formatRupiah";
-import { Button, NavLink } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 const OrderDetailPage = () => {
   const [order, setOrder] = useState(null);
@@ -56,9 +54,6 @@ const OrderDetailPage = () => {
 
   return (
     <div className="prints-body">
-      {/* <PDFViewer style={{ width: "100%", height: "100vh" }}>
-        <TransactionPDF dataOrder={order} />
-      </PDFViewer> */}
       <TextTitleProfile>{profile?.name}</TextTitleProfile>
       <TextTitleAlamat>{profile?.alamat}</TextTitleAlamat>
       <Bars />

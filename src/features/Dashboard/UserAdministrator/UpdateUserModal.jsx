@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Button, Col, Form, Modal, Row } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Button, Col, Form, Modal, Row, Spinner } from "react-bootstrap";
 import FormInput from "../../../components/Form/FormInput";
 import { useForm } from "react-hook-form";
 import axiosInstance from "../../../config/axios/axiosInstance";
@@ -13,6 +13,8 @@ export default function UpdateUserModal({ show, handleClose, setShowUpdated, fet
     reset,
     formState: { errors },
   } = useForm(); // react-hook-form hooks
+
+  const [loading, setLoading] = useState(false);
 
   //get data by id
   const fetchUserById = async (id) => {
@@ -29,6 +31,7 @@ export default function UpdateUserModal({ show, handleClose, setShowUpdated, fet
   });
 
   const onSubmit = async (data) => {
+    setLoading(true);
     const payload = {
       username: data.username,
       password: data.password,
@@ -40,9 +43,11 @@ export default function UpdateUserModal({ show, handleClose, setShowUpdated, fet
       fetchUsers();
       toast.success(response?.data?.message);
       setShowUpdated(false);
+      setLoading(false);
       // Reset form setelah sukses
       reset();
     } catch (error) {
+      setLoading(false);
       console.error("Error:", error);
       // toast.error(error.message);
       // Tambahkan logika penanganan kesalahan
@@ -93,7 +98,7 @@ export default function UpdateUserModal({ show, handleClose, setShowUpdated, fet
             Close
           </Button>
           <Button variant="primary" type="submit">
-            Save
+            {loading ? <Spinner animation="border" size="sm" /> : "Save"}
           </Button>
         </Modal.Footer>
       </Form>

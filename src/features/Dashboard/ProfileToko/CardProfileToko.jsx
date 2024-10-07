@@ -108,15 +108,8 @@ const ProfilePage = () => {
             onChange={handleInputChange}
           />
         </Form.Group>
-        {loading ? (
-          <ButtonV1 type="submit">
-            <Spinner animation="border" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </Spinner>
-          </ButtonV1>
-        ) : (
-          <ButtonV1 type="submit">Update Profile</ButtonV1>
-        )}
+
+        <ButtonV1 type="submit">{loading ? <Spinner animation="border" size="sm" /> : "Update Profile"}</ButtonV1>
       </Form>
     </ProfileWrapper>
   );

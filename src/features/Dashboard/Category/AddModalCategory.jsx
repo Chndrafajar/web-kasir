@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Col, Form, Image, Modal, Row } from "react-bootstrap";
+import { Button, Col, Form, Image, Modal, Row, Spinner } from "react-bootstrap";
 import FormInput from "../../../components/Form/FormInput";
 import { useForm } from "react-hook-form";
 import axiosInstance from "../../../config/axios/axiosInstance";
@@ -99,7 +99,7 @@ export default function AddModalCategory({ show, handleClose, setShowAdd, fetchC
             Close
           </Button>
           <Button variant="primary" type="submit" disabled={loading}>
-            {loading ? "Saving..." : "Save"}
+            {loading ? <Spinner animation="border" size="sm" /> : "Add"}
           </Button>
         </Modal.Footer>
       </Form>

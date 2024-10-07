@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import CardFilterTransaksi from "../../../features/Dashboard/Transaksi/CardFilterTransaksi";
 import CardInformationDashboard from "../../../features/Dashboard/CardInformationDashboard";
-import DataList from "../../../components/DataList/DataList";
-import { Button, Pagination, Table } from "react-bootstrap";
+import { Pagination, Table } from "react-bootstrap";
 import axiosInstance from "../../../config/axios/axiosInstance";
 import { useQuery } from "react-query";
 import dateFormat from "../../../config/dateFormat";
