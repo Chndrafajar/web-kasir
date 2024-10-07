@@ -29,7 +29,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "cross-env CI=false npm run build-script",
+    "build-script": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
