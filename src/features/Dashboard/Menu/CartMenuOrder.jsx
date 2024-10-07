@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card, Row } from "react-bootstrap";
+import { Button, Card, Spinner } from "react-bootstrap";
 import styled from "styled-components";
 import { DFlex, DFlexJustifyBetween, FlexColumn } from "../../../styled/styled.flex";
 import { CDN_LINK } from "../../../config/cdn/urlImage";
@@ -8,7 +8,6 @@ import { IoClose } from "react-icons/io5";
 import ButtonV1 from "../../../components/Button/ButtonV1";
 import axiosInstance from "../../../config/axios/axiosInstance";
 import { toast } from "react-toastify";
-import ShowPDF from "../../../components/PDF/ShowPDF";
 import { useNavigate } from "react-router-dom";
 import FormInput from "../../../components/Form/FormInput";
 
@@ -17,6 +16,7 @@ export default function CartMenuOrder({ cart, updateQuantity, removeFromCart, se
   const [paymentAmount, setPaymentAmount] = useState("");
   const [shortage, setShortage] = useState(0);
   const [change, setChange] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   // Initialize inputValues with the current cart quantities
   useEffect(() => {
@@ -82,7 +82,7 @@ export default function CartMenuOrder({ cart, updateQuantity, removeFromCart, se
     // Pastikan paymentAmount dan change sudah dihitung dengan benar
     const bayar = parseFloat(paymentAmount);
     const kembalian = change;
-
+    setLoading(true);
     const orderPayload = {
       items: cart.map((item) => ({ _id: item._id, quantity: item.quantity })),
       totalQuantity: totalQuantity,
@@ -99,9 +99,11 @@ export default function CartMenuOrder({ cart, updateQuantity, removeFromCart, se
         setCart([]);
         localStorage.removeItem("cart");
         toast.success("Order created successfully");
+        setLoading(false);
         navigate(`/order/${orderId}`); // Redirect ke halaman detail order
       })
       .catch((error) => {
+        setLoading(false);
         console.error("Error creating order:", error);
         toast.error("Error creating order");
       });
@@ -164,7 +166,7 @@ export default function CartMenuOrder({ cart, updateQuantity, removeFromCart, se
       <FormInput placeholder="Bayar" type="number" value={paymentAmount} onChange={handlePaymentChange} />
 
       <ButtonV1 handleClick={checkout} style={{ marginTop: "10px" }}>
-        Prints Bils
+        {loading ? <Spinner animation="border" size="sm" /> : "Prints Bils"}
       </ButtonV1>
       {/* <ShowPDF cart={cart} totalQuantity={totalQuantity} totalPrice={totalPrice} /> */}
     </CardWrapper>
