@@ -78,7 +78,8 @@ export default function MenuPage() {
     }
   );
 
-  const [selectedCategory, setSelectedCategory] = useState(categoriesData?.category[0]._id);
+  const [selectedCategory, setSelectedCategory] = useState("67038cf6c0eea2cdbc209c21");
+  console.log("67038cf6c0eea2cdbc209c21");
 
   //get menu
   const fetchMenu = async (categoryId, page = 1) => {

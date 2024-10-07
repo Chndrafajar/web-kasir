@@ -5,7 +5,7 @@ import styled from "styled-components";
 import dateFormat from "../../../config/dateFormat";
 import { DFlex, DFlexJustifyBetween } from "../../../styled/styled.flex";
 import formatRupiah from "../../../config/formatRupiah";
-import { Button } from "react-bootstrap";
+import { Button, Spinner } from "react-bootstrap";
 
 const OrderDetailPage = () => {
   const [order, setOrder] = useState(null);
@@ -41,7 +41,11 @@ const OrderDetailPage = () => {
   }, [params.orderId]);
 
   if (!order) {
-    return <div>Loading...</div>;
+    return (
+      <div style={{ height: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <Spinner variant="primary" />
+      </div>
+    );
   }
 
   const handlePrint = (orderId) => {
