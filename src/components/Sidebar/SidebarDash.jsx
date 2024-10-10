@@ -9,8 +9,6 @@ import { useAuth } from "../../config/auth/authConfig";
 export default function SidebarDash({ activeBars, setActiveBars }) {
   const [auth] = useAuth();
 
-  console.log(auth.user);
-
   return (
     <SidebarWrapper className={activeBars ? "active" : ""}>
       <HeaderSidebar className={activeBars ? "active" : ""}>

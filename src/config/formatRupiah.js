@@ -1,4 +1,8 @@
 const formatRupiah = (angka) => {
+  if (angka === undefined) {
+    return "Rp 0";
+  }
+
   const numberString = angka.toString();
   const split = numberString.split(".");
   const sisa = split[0].length % 3;

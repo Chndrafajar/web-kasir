@@ -29,7 +29,7 @@ export default function CardInformationDashboard() {
   });
 
   //total revenue
-  const totalRevenue = dataOrder?.orders?.reduce((total, order) => total + order.totalPrice, 0);
+  const totalRevenue = dataOrder?.orders?.reduce((total, order) => total + (order?.totalPrice || 0), 0) || 0;
 
   return (
     <Row>
